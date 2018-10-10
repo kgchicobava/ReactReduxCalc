@@ -27,7 +27,7 @@ input[type=number] {
    -moz-appearance: textfield;
 }
 
-.Number {
+.Button {
   height: 100px;
   width: 100px;
   font-size: 50px;
