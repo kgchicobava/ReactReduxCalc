@@ -49,7 +49,7 @@ export default function(state = initialState, action) {
             argumentBefore: 0,
             argumentAfter: 0,
             currentOperator: "",
-            result: parseInt(`${action.argBefore} ${action.operator} ${action.argAfter}`)
+            result: operate(action.argBefore, action.operator, action.argAfter)
         };
 
         case CANCEL:
@@ -71,7 +71,7 @@ export default function(state = initialState, action) {
         case NUMBER:
         return {
             ...state,
-            argumentBefore: parseInt(action.argBefore + action.num)
+            argumentBefore: parseInt(action.num)
         };
 
         case DOT:
@@ -82,5 +82,26 @@ export default function(state = initialState, action) {
 
         default:
         return state;
+    }
+}
+
+function operate(first, operator, second) {
+    first = parseInt(first);
+    second = parseInt(second);
+    switch(operator) {
+        case "+":
+        return first + second;
+
+        case "-":
+        return first - second;
+
+        case "*":
+        return first * second;
+
+        case "/":
+        return first / second;
+
+        default:
+        return null;
     }
 }

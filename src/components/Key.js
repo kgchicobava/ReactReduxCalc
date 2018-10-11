@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import {number} from "../actions/calcActions";
 import {connect} from "react-redux";
-
+import store from "../store"
 class Key extends Component {
   onClick = () => {
-    this.props.number(0, this.props.num);
+    this.props.number(store.getState().argumentBefore + "" + this.props.num);
   }
 
 
