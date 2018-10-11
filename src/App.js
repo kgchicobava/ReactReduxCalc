@@ -10,15 +10,16 @@ import {Provider} from "react-redux";
 class App extends Component {
   render() {
     return (
-      // <Provider store={store}>
+      <Provider store={store}>
       <div className="App">
         <Display />
         <div className="flex">
           <KeyBoard />
           <Operators />
+          {console.log(store.getState())}
         </div>
       </div>
-      // </Provider>
+      </Provider>
     );
   }
 }

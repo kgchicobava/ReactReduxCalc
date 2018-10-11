@@ -1,13 +1,29 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import {connect} from "react-redux";
+import {dot} from "../actions/calcActions";
 
-export default class Operator extends Component {
-    // constructor(props) {
-    //     super(props);    }
+
+class Operator extends Component {
+  onClick = () => {
+    switch(this.props.operator) {
+      case ".":
+      this.props.dot();
+      break;
+      default:
+      return null;
+    }
+  }
+
+
   render() {
     return (
       <div>
-        <button className="Button">{this.props.operator}</button>
+        <button className="Button" onClick={this.onClick.bind(this)}>{this.props.operator}</button>
       </div>
     )
   }
 }
+
+const mapStateToProps = (state) => ({state});
+
+export default connect(mapStateToProps, {dot})(Operator);
