@@ -16,7 +16,6 @@ class App extends Component {
         <div className="flex">
           <KeyBoard />
           <Operators />
-          {console.log(store.getState())}
         </div>
       </div>
       </Provider>

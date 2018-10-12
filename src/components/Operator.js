@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {dot, plus, minus, equal, clear} from "../actions/calcActions";
+import {dot, plus, minus, multiply, equal, clear} from "../actions/calcActions";
 import store from "../store";
 
 class Operator extends Component {
@@ -10,13 +10,19 @@ class Operator extends Component {
       this.props.dot();
       break;
       case "+":
-      this.props.plus(store.getState().argumentBefore);
+      this.props.plus(store.getState().argumentBefore, store.getState().result);
+      document.querySelector("#mainDisplay").value = store.getState().result;
       break;
       case "-":
-      this.props.minus(store.getState().argumentBefore);
+      this.props.minus(store.getState().argumentBefore, store.getState().result);
+      document.querySelector("#mainDisplay").value = store.getState().result;
+      break;
+      case "*":
+      this.props.multiply(store.getState().argumentBefore, store.getState().result ? store.getState().result : 1);
+      document.querySelector("#mainDisplay").value = store.getState().result;
       break;
       case "=":
-      this.props.equal(store.getState().argumentBefore, store.getState().currentOperator, store.getState().argumentAfter);
+      this.props.equal(store.getState().argumentBefore, store.getState().currentOperator, store.getState().result);
       document.querySelector("#mainDisplay").value = store.getState().result;
       break;
       case "CA":
@@ -39,4 +45,4 @@ class Operator extends Component {
 
 const mapStateToProps = (state) => ({state});
 
-export default connect(mapStateToProps, {dot, plus, minus, equal, clear})(Operator);
+export default connect(mapStateToProps, {dot, plus, minus, multiply, equal, clear})(Operator);

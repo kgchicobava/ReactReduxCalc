@@ -1,5 +1,5 @@
 import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT} from "../actions/types";
-
+import * as math from "mathjs";
 const initialState = {
     isDot: false,
     argumentBefore: 0,
@@ -9,11 +9,12 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
+    console.log(math)
     switch(action.type) {
         case DIVIDE:
         return {
             ...state,
-            argumentAfter : parseInt(action.argBefore),
+            result : parseInt(action.argBefore),
             argumentBefore : 0,
             currentOperator: "/"
         };
@@ -21,7 +22,7 @@ export default function(state = initialState, action) {
         case MULTIPLY:
         return {
             ...state,
-            argumentAfter : parseInt(action.argBefore),
+            result : parseInt(action.argBefore * action.result),
             argumentBefore : 0,
             currentOperator: "*"
         };
@@ -29,7 +30,7 @@ export default function(state = initialState, action) {
         case ADD:
         return {
             ...state,
-            argumentAfter : parseInt(action.argBefore),
+            result : parseInt(action.argBefore + action.result),
             argumentBefore : 0,
             currentOperator: "+"
         };
@@ -37,7 +38,7 @@ export default function(state = initialState, action) {
         case MINUS:
         return {
             ...state,
-            argumentAfter : parseInt(action.argBefore),
+            result : - (action.argBefore - action.result),
             argumentBefore : 0,
             currentOperator: "-"
         };
@@ -47,7 +48,6 @@ export default function(state = initialState, action) {
             ...state,
             isDot: false,
             argumentBefore: 0,
-            argumentAfter: 0,
             currentOperator: "",
             result: operate(action.argBefore, action.operator, action.argAfter)
         };
@@ -63,7 +63,6 @@ export default function(state = initialState, action) {
             ...state,
             isDot: false,
             argumentBefore: 0,
-            argumentAfter: 0,
             currentOperator: "",
             result : 0
         };
