@@ -14,7 +14,7 @@ export default function(state = initialState, action) {
         case DIVIDE:
         return {
             ...state,
-            result : parseInt(action.argBefore),
+            result : action.result / action.argBefore,
             argumentBefore : 0,
             currentOperator: "/"
         };
@@ -22,7 +22,7 @@ export default function(state = initialState, action) {
         case MULTIPLY:
         return {
             ...state,
-            result : parseInt(action.argBefore * action.result),
+            result : parseFloat(action.argBefore * action.result),
             argumentBefore : 0,
             currentOperator: "*"
         };
@@ -30,7 +30,7 @@ export default function(state = initialState, action) {
         case ADD:
         return {
             ...state,
-            result : parseInt(action.argBefore + action.result),
+            result : parseFloat(action.argBefore + action.result),
             argumentBefore : 0,
             currentOperator: "+"
         };
@@ -38,7 +38,7 @@ export default function(state = initialState, action) {
         case MINUS:
         return {
             ...state,
-            result : - (action.argBefore - action.result),
+            result : - (action.result - action.argBefore),
             argumentBefore : 0,
             currentOperator: "-"
         };
@@ -70,7 +70,7 @@ export default function(state = initialState, action) {
         case NUMBER:
         return {
             ...state,
-            argumentBefore: parseInt(action.num)
+            argumentBefore: parseFloat(action.num)
         };
 
         case DOT:

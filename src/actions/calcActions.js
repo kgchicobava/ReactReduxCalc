@@ -1,11 +1,17 @@
 import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT} from "./types";
-
+import store from "../store";
+import * as math from "mathjs";
 export const number = (num) => dispatch => {
     dispatch({type: NUMBER, num});
 };
 
-export const dot = () => dispatch => {
-    dispatch({type: DOT})
+export const dot = (argBefore) => dispatch => {
+    let dotted;
+    console.log("me " + math.eval("4.0"));
+    if(!store.getState().isDot) {
+        dotted = argBefore + ".";
+    }
+    dispatch({type: DOT, argBefore: dotted});
 };
 
 export const plus = (argBefore, result) => dispatch => {
@@ -20,8 +26,8 @@ export const multiply = (argBefore, result) => dispatch => {
     dispatch({type: MULTIPLY, argBefore, result});
 }
 
-export const divide = () => dispatch => {
-    dispatch({type: DIVIDE});
+export const divide = (argBefore, result) => dispatch => {
+    dispatch({type: DIVIDE, argBefore, result});
 }
 
 export const equal = (argBefore, operator, argAfter) => dispatch => {

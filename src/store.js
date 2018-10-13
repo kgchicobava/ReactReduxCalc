@@ -9,6 +9,7 @@ import mainReducer from "./reducers/mainReducer";
 const iniialState = {
     isDot: false,
     argumentBefore: 0,
+    argumentAfter : 0,
     currentOperator: "",
     result: 0
 };
