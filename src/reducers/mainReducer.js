@@ -1,5 +1,4 @@
 import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT, DOT_REMOVE} from "../actions/types";
-import * as math from "mathjs";
 const initialState = {
     isDot: false,
     argumentBefore: "",
@@ -9,7 +8,6 @@ const initialState = {
 }
 
 export default function(state = initialState, action) {
-    console.log(math)
     switch(action.type) {
         case DIVIDE:
         return {
@@ -55,8 +53,8 @@ export default function(state = initialState, action) {
         case CANCEL:
         return {
             ...state,
-            argumentBefore: parseInt((""+action.argBefore).slice(0, -1))
-        };
+            argumentBefore: action.argBefore ? action.argBefore : ""
+       };
 
         case CLEAR:
         return {
@@ -70,13 +68,14 @@ export default function(state = initialState, action) {
         case NUMBER:
         return {
             ...state,
-            argumentBefore: parseFloat(action.num)
+            argumentBefore: action.num
         };
 
         case DOT:
         return {
             ...state,
-            isDot: true
+            isDot: true,
+            argumentBefore: action.argBefore
         };
 
         case DOT_REMOVE:
@@ -91,8 +90,8 @@ export default function(state = initialState, action) {
 }
 
 function operate(first, operator, second) {
-    first = parseInt(first);
-    second = parseInt(second);
+    first = parseFloat(first);
+    second = parseFloat(second);
     switch(operator) {
         case "+":
         return first + second;
