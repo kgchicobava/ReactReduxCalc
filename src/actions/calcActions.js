@@ -36,15 +36,16 @@ export const equal = (argBefore, operator, argAfter) => dispatch => {
 }
 
 export const cancel = (argBefore)=> dispatch => {
-    let value = parseInt((""+argBefore).slice(0, -1));
-    console.log(value);
+    // console.log(`argBef ${argBefore}`)
+    let last = argBefore.toString()[argBefore.length-1];
+    let value = (""+argBefore).slice(0, -1);
+    if(last === ".") {
+        dispatch({type: DOT_REMOVE});
+    }
+    
     dispatch({type: CANCEL, argBefore: value});
 }
 
 export const clear = () => dispatch => {
     dispatch({type: CLEAR});
-}
-
-const dotRemove = () => dispatch => {
-    dispatch({type: DOT_REMOVE});
 }

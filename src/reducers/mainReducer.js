@@ -14,7 +14,8 @@ export default function(state = initialState, action) {
             ...state,
             result : action.result / action.argBefore,
             argumentBefore : "",
-            currentOperator: "/"
+            currentOperator: "/",
+            isDot: false
         };
 
         case MULTIPLY:
@@ -22,7 +23,8 @@ export default function(state = initialState, action) {
             ...state,
             result : parseFloat(action.argBefore * action.result),
             argumentBefore : "",
-            currentOperator: "*"
+            currentOperator: "*",
+            isDot: false
         };
 
         case ADD:
@@ -30,7 +32,8 @@ export default function(state = initialState, action) {
             ...state,
             result : parseFloat(action.argBefore + action.result),
             argumentBefore : "",
-            currentOperator: "+"
+            currentOperator: "+",
+            isDot: false
         };
 
         case MINUS:
@@ -38,7 +41,8 @@ export default function(state = initialState, action) {
             ...state,
             result : - (action.result - action.argBefore),
             argumentBefore : "",
-            currentOperator: "-"
+            currentOperator: "-",
+            isDot: false
         };
 
         case EQUALS:
