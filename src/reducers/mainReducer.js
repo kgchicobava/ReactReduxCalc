@@ -1,10 +1,11 @@
 import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT, DOT_REMOVE} from "../actions/types";
+import * as math from "mathjs";
 const initialState = {
     isDot: false,
     argumentBefore: "",
     argumentAfter: 0,
     currentOperator: "",
-    result : 0
+    result : ""
 }
 
 export default function(state = initialState, action) {
@@ -12,7 +13,7 @@ export default function(state = initialState, action) {
         case DIVIDE:
         return {
             ...state,
-            result : action.result / action.argBefore,
+            result : parseFloat(action.result / action.argBefore? action.argBefore: 0),
             argumentBefore : "",
             currentOperator: "/",
             isDot: false
@@ -30,7 +31,7 @@ export default function(state = initialState, action) {
         case ADD:
         return {
             ...state,
-            result : parseFloat(action.argBefore + action.result),
+            result : parseFloat(action.argBefore? action.argBefore : 0) + parseFloat(action.result? action.result : 0),
             argumentBefore : "",
             currentOperator: "+",
             isDot: false
@@ -66,7 +67,7 @@ export default function(state = initialState, action) {
             isDot: false,
             argumentBefore: "",
             currentOperator: "",
-            result : 0
+            result : ""
         };
 
         case NUMBER:
