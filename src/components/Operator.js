@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from "react-redux";
-import {dot, plus, minus, multiply, divide, equal, clear} from "../actions/calcActions";
+import {dot, plus, minus, multiply, divide, equal, clear, cancel} from "../actions/calcActions";
 import store from "../store";
 
 class Operator extends Component {
@@ -32,6 +32,9 @@ class Operator extends Component {
       case "CA":
           this.props.clear();
           break;
+      case "C":
+          this.props.cancel(store.getState().argumentBefore);
+          break;
       default:
           return null;
   }
@@ -49,4 +52,4 @@ class Operator extends Component {
 
 const mapStateToProps = (state) => ({state});
 
-export default connect(mapStateToProps, {dot, plus, minus, multiply, divide, equal, clear})(Operator);
+export default connect(mapStateToProps, {dot, plus, minus, multiply, divide, equal, clear, cancel})(Operator);

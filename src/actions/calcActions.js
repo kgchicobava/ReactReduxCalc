@@ -1,17 +1,18 @@
-import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT} from "./types";
+import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT, DOT_REMOVE} from "./types";
 import store from "../store";
-import * as math from "mathjs";
 export const number = (num) => dispatch => {
     dispatch({type: NUMBER, num});
 };
 
 export const dot = (argBefore) => dispatch => {
     let dotted;
-    console.log("me " + math.eval("4.0"));
-    if(!store.getState().isDot) {
+    try {if(!store.getState().isDot) {
         dotted = argBefore + ".";
+        dispatch({type: DOT, argBefore: dotted});
+    }} catch(err) {
+        console.err(err);
     }
-    dispatch({type: DOT, argBefore: dotted});
+    
 };
 
 export const plus = (argBefore, result) => dispatch => {
@@ -34,10 +35,16 @@ export const equal = (argBefore, operator, argAfter) => dispatch => {
     dispatch({type: EQUALS, argBefore, argAfter, operator});
 }
 
-export const cancel = ()=> dispatch => {
-    dispatch({type: CANCEL});
+export const cancel = (argBefore)=> dispatch => {
+    let value = parseInt((""+argBefore).slice(0, -1));
+    console.log(value);
+    dispatch({type: CANCEL, argBefore: value});
 }
 
 export const clear = () => dispatch => {
     dispatch({type: CLEAR});
+}
+
+const dotRemove = () => dispatch => {
+    dispatch({type: DOT_REMOVE});
 }

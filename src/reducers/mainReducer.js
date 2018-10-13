@@ -1,8 +1,8 @@
-import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT} from "../actions/types";
+import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT, DOT_REMOVE} from "../actions/types";
 import * as math from "mathjs";
 const initialState = {
     isDot: false,
-    argumentBefore: 0,
+    argumentBefore: "",
     argumentAfter: 0,
     currentOperator: "",
     result : 0
@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
         return {
             ...state,
             result : action.result / action.argBefore,
-            argumentBefore : 0,
+            argumentBefore : "",
             currentOperator: "/"
         };
 
@@ -23,7 +23,7 @@ export default function(state = initialState, action) {
         return {
             ...state,
             result : parseFloat(action.argBefore * action.result),
-            argumentBefore : 0,
+            argumentBefore : "",
             currentOperator: "*"
         };
 
@@ -31,7 +31,7 @@ export default function(state = initialState, action) {
         return {
             ...state,
             result : parseFloat(action.argBefore + action.result),
-            argumentBefore : 0,
+            argumentBefore : "",
             currentOperator: "+"
         };
 
@@ -39,7 +39,7 @@ export default function(state = initialState, action) {
         return {
             ...state,
             result : - (action.result - action.argBefore),
-            argumentBefore : 0,
+            argumentBefore : "",
             currentOperator: "-"
         };
 
@@ -47,7 +47,7 @@ export default function(state = initialState, action) {
         return {
             ...state,
             isDot: false,
-            argumentBefore: 0,
+            argumentBefore: "",
             currentOperator: "",
             result: operate(action.argBefore, action.operator, action.argAfter)
         };
@@ -62,7 +62,7 @@ export default function(state = initialState, action) {
         return {
             ...state,
             isDot: false,
-            argumentBefore: 0,
+            argumentBefore: "",
             currentOperator: "",
             result : 0
         };
@@ -78,6 +78,12 @@ export default function(state = initialState, action) {
             ...state,
             isDot: true
         };
+
+        case DOT_REMOVE:
+        return {
+            ...state,
+            isDot: false
+        }
 
         default:
         return state;

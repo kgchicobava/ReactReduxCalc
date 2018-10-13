@@ -8,10 +8,10 @@ import mainReducer from "./reducers/mainReducer";
 
 const iniialState = {
     isDot: false,
-    argumentBefore: 0,
+    argumentBefore: "",
     argumentAfter : 0,
     currentOperator: "",
-    result: 0
+    result: ""
 };
 const middleware = [thunk];
 
