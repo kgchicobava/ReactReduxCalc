@@ -9,9 +9,14 @@ import {
     NUMBER,
     DOT,
     DOT_REMOVE,
-    SET_RESULT
+    SET_RESULT,
+    EXPO,
+    SQRT,
+    PERCENTAGE,
+    FACTORIAL
 } from "./types";
 import store from "../store";
+import * as math from "mathjs";
 export const number = (num) => dispatch => {
     dispatch({
         type: NUMBER,
@@ -41,7 +46,7 @@ export const plus = (argBefore = 0, result = 0) => dispatch => {
         type: ADD,
         res
     });
-}
+};
 export const minus = (argBefore, result) => dispatch => {
     if (result === "") {
         dispatch({
@@ -57,8 +62,7 @@ export const minus = (argBefore, result) => dispatch => {
         value,
         argBefore
     })
-}
-
+};
 
 export const multiply = (argBefore, result = 1) => dispatch => {
     const res = parseFloat(argBefore * result);
@@ -66,7 +70,7 @@ export const multiply = (argBefore, result = 1) => dispatch => {
         type: MULTIPLY,
         res
     });
-}
+};
 
 export const divide = (argBefore, result) => dispatch => {
     if (result === "") {
@@ -81,7 +85,37 @@ export const divide = (argBefore, result) => dispatch => {
         argBefore,
         val: result === 1 ? 0 : result
     })
-}
+};
+
+export const expo = (argBefore, result) => dispatch => {
+    const res = parseFloat(argBefore ** (result? result : 1));
+    dispatch({type: EXPO, res});
+};
+
+export const sqrt = (argBefore) => dispatch => {
+    const res = Math.sqrt(parseFloat(argBefore));
+    dispatch({type: SQRT, res});
+};
+
+export const percentage = (argBefore, result) => dispatch => {
+    if (result === "") {
+        dispatch({
+            type: SET_RESULT,
+            value: argBefore
+        });}
+        result = parseFloat((store.getState().result/100) * argBefore? argBefore : 1);
+        console.log(`result ${result}`)
+        dispatch({
+            type: PERCENTAGE,
+            argBefore,
+            res: result
+        })
+};
+
+export const factorial = (argBefore) => dispatch => {
+    const res = math.factorial(parseFloat(argBefore));
+    dispatch({type: FACTORIAL, res});
+};
 
 export const equal = (argBefore, operator, argAfter) => dispatch => {
     dispatch({
@@ -90,7 +124,7 @@ export const equal = (argBefore, operator, argAfter) => dispatch => {
         argAfter,
         operator
     });
-}
+};
 
 export const cancel = (argBefore) => dispatch => {
     let last = argBefore.toString()[argBefore.length - 1];
@@ -105,10 +139,10 @@ export const cancel = (argBefore) => dispatch => {
         type: CANCEL,
         argBefore: value
     });
-}
+};
 
 export const clear = () => dispatch => {
     dispatch({
         type: CLEAR
     });
-}
+};

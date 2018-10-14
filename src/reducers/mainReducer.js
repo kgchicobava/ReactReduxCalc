@@ -9,7 +9,11 @@ import {
     NUMBER,
     DOT,
     DOT_REMOVE,
-    SET_RESULT
+    SET_RESULT,
+    EXPO,
+    SQRT,
+    PERCENTAGE,
+    FACTORIAL
 } from "../actions/types";
 const initialState = {
     isDot: false,
@@ -88,6 +92,42 @@ export default function (state = initialState, action) {
                 argumentBefore: action.num
             };
 
+        case EXPO:
+            return {
+                    ...state,
+                    isDot: false,
+                    result: action.res,
+                    argumentBefore: "",
+                    currentOperator: "^"    
+            }
+
+        case SQRT:
+            return {
+                   ...state,
+                   isDot: false,
+                   result: action.res,
+                   argumentBefore: "",
+                   currentOperator: "√" 
+            }
+
+        case PERCENTAGE:
+            return {
+                    ...state,
+                    isDot: false,
+                    result: action.res,
+                    argumentBefore: "",
+                    currentOperator: "%"
+            }
+
+        case FACTORIAL:
+            return {
+                  ...state,
+                  isDot: false,
+                  result: action.res,
+                  argumentBefore: "",
+                  currentOperator: "!"  
+            }
+
         case DOT:
             return {
                 ...state,
@@ -114,19 +154,26 @@ export default function (state = initialState, action) {
 function operate(first, operator, second) {
     first = parseFloat(first);
     second = parseFloat(second);
+    console.log(`first ${first} second ${second}`)
     switch (operator) {
         case "+":
-            return first ? first : 0 + second? second : 0;
+            return (first ? first : 0) + (second? second : 0);
 
         case "-":
-            return second ? second : 0 - first ? first : 0;
+            return (second ? second : 0) - (first ? first : 0);
 
         case "*":
-            return first? first : 1 * second ? second : 1;
+            return (first? first : 1) * (second ? second : 1);
 
         case "/":
-            return second? second : 1 / first ? first : 1;
+            return (second? second : 1) / (first ? first : 1);
 
+        case "^":
+            return  (second ? second : 1) ** (first? first : 1);
+
+        case "%":
+        console.log(`first ${first} second ${second}`)
+        return (second/100)*first;
         default:
             return 0;
     }

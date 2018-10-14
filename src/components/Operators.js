@@ -17,6 +17,11 @@ export default class Operators extends Component {
         <Operator operator={"C"} />
         <Operator operator={"CA"}/>
         <Operator operator={"."}/>
+        <Operator operator={"^"}/>
+        <Operator operator={"√"}/>
+        <Operator operator={"%"}/>
+        <Operator operator={"!"}/>
+
         </div>
       </div>
     )

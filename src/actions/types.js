@@ -9,4 +9,7 @@ export const NUMBER = "NUMBER"
 export const DOT = "DOT";
 export const DOT_REMOVE = "DOT_REMOVE";
 export const SET_RESULT = "SET_RESULT";
-// import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT} from "";
+export const EXPO = "EXPO";
+export const SQRT = "SQRT";
+export const PERCENTAGE = "PERCENTAGE";
+export const FACTORIAL = "FACTORIAL";
