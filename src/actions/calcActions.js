@@ -20,11 +20,10 @@ export const plus = (argBefore = 0, result = 0) => dispatch => {
     dispatch({type: ADD, res});
 }
 export const minus = (argBefore, result) => dispatch => {
-    console.log(`argbefore ${argBefore} result ${result}`)
     if(result === "") {
         dispatch({type: SET_RESULT, value: argBefore});
     }
-    
+
     let value = store.getState().result - argBefore;
     console.log(value)
     dispatch({type: MINUS, value, argBefore})
@@ -37,7 +36,12 @@ export const multiply = (argBefore, result = 1) => dispatch => {
 }
 
 export const divide = (argBefore, result) => dispatch => {
-    dispatch({type: DIVIDE, argBefore, result});
+    if(result === "") {
+        dispatch({type: SET_RESULT, value: argBefore});
+    }
+    console.log(`result ${result} = parseFloat(store.getState().result) ${parseFloat(store.getState().result)} / parseFloat(argBefore? argBefore : 1) ${parseFloat(argBefore)}`)
+    result = parseFloat(store.getState().result) / parseFloat(argBefore);
+    dispatch({type: DIVIDE, argBefore, val: result == 1 ? 0 : result})
 }
 
 export const equal = (argBefore, operator, argAfter) => dispatch => {

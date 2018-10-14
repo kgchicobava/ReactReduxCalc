@@ -27,7 +27,7 @@ class Operator extends Component {
           document.querySelector("#mainDisplay").value = store.getState().result;
           break;
       case "/":
-          this.props.divide(store.getState().argumentBefore ? store.getState().argumentBefore: 1, store.getState().result);
+          this.props.divide(store.getState().argumentBefore, store.getState().result);
           document.querySelector("#mainDisplay").value = store.getState().result;
           break;
       case "=":

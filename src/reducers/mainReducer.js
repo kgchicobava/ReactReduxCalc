@@ -11,16 +11,11 @@ import {
     DOT_REMOVE,
     SET_RESULT
 } from "../actions/types";
-import * as math from "mathjs";
 const initialState = {
     isDot: false,
     argumentBefore: "",
     argumentAfter: 0,
     currentOperator: "",
-    dilene: 0,
-    dilnuk: 0,
-    zmenshuvane: 0,
-    videmnik: 0,
     result: ""
 }
 
@@ -29,7 +24,7 @@ export default function (state = initialState, action) {
         case DIVIDE:
             return {
                 ...state,
-                result: parseFloat(action.result / action.argBefore ? action.argBefore : 0),
+                result: action.val ? action.val : action.argBefore,
                 argumentBefore: "",
                 currentOperator: "/",
                 isDot: false
@@ -134,7 +129,7 @@ function operate(first, operator, second) {
             return first * second;
 
         case "/":
-            return first / second;
+            return second / first;
 
         default:
             return null;

@@ -11,10 +11,6 @@ const iniialState = {
     argumentBefore: "",
     argumentAfter : 0,
     currentOperator: "",
-    dilene: 0,
-    dilnuk: 0,
-    zmenshuvane: 0,
-    videmnik: 0,
     result: ""
 };
 const middleware = [thunk];
