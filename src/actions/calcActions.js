@@ -1,4 +1,4 @@
-import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT, DOT_REMOVE} from "./types";
+import {DIVIDE, MULTIPLY, ADD, MINUS, EQUALS, CANCEL, CLEAR, NUMBER, DOT, DOT_REMOVE, SET_RESULT} from "./types";
 import store from "../store";
 export const number = (num) => dispatch => {
     dispatch({type: NUMBER, num});
@@ -15,16 +15,25 @@ export const dot = (argBefore) => dispatch => {
     
 };
 
-export const plus = (argBefore, result) => dispatch => {
-    dispatch({type: ADD, argBefore, result});
+export const plus = (argBefore = 0, result = 0) => dispatch => {
+    const res = parseFloat(argBefore? argBefore : 0) + parseFloat(result? result : 0)
+    dispatch({type: ADD, res});
 }
-
 export const minus = (argBefore, result) => dispatch => {
-    dispatch({type: MINUS, argBefore, result});
+    console.log(`argbefore ${argBefore} result ${result}`)
+    if(result === "") {
+        dispatch({type: SET_RESULT, value: argBefore});
+    }
+    
+    let value = store.getState().result - argBefore;
+    console.log(value)
+    dispatch({type: MINUS, value, argBefore})
 }
 
-export const multiply = (argBefore, result) => dispatch => {
-    dispatch({type: MULTIPLY, argBefore, result});
+
+export const multiply = (argBefore, result = 1) => dispatch => {
+    const res = parseFloat(argBefore * result);
+    dispatch({type: MULTIPLY, res});
 }
 
 export const divide = (argBefore, result) => dispatch => {

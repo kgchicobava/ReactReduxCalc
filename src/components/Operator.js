@@ -3,6 +3,11 @@ import {connect} from "react-redux";
 import {dot, plus, minus, multiply, divide, equal, clear, cancel} from "../actions/calcActions";
 import store from "../store";
 
+const localState = {};
+store.subscribe(()=> {
+    Object.assign(localState, {}, store.getState());
+})
+
 class Operator extends Component {
   onClick = () => {
     switch (this.props.operator) {
@@ -10,8 +15,8 @@ class Operator extends Component {
           this.props.dot(store.getState().argumentBefore);
           break;
       case "+":
-          this.props.plus(store.getState().argumentBefore, store.getState().result);
-          document.querySelector("#mainDisplay").value = store.getState().result;
+          this.props.plus(localState.argumentBefore, localState.result);
+          document.querySelector("#mainDisplay").value = localState.result;
           break;
       case "-":
           this.props.minus(store.getState().argumentBefore, store.getState().result);
