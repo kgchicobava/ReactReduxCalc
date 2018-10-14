@@ -79,10 +79,6 @@ export default function (state = initialState, action) {
                 argumentBefore: "",
                 argumentAfter: 0,
                 currentOperator: "",
-                dilene: 0,
-                dilnuk: 0,
-                zmenshuvane: 0,
-                videmnik: 0,
                 result: ""
             };
 
@@ -120,18 +116,18 @@ function operate(first, operator, second) {
     second = parseFloat(second);
     switch (operator) {
         case "+":
-            return first + second;
+            return first ? first : 0 + second? second : 0;
 
         case "-":
-            return second - first;
+            return second ? second : 0 - first ? first : 0;
 
         case "*":
-            return first * second;
+            return first? first : 1 * second ? second : 1;
 
         case "/":
-            return second / first;
+            return second? second : 1 / first ? first : 1;
 
         default:
-            return null;
+            return 0;
     }
 }
