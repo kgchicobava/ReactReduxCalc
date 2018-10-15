@@ -21,8 +21,6 @@ body {
   grid-column-end: 3;
 }
 
-
-
 .Display {
   height: 12vh;
   width: 60vw;
@@ -33,7 +31,7 @@ body {
   padding-top: 5px;
   border: transparent;
   font-size: 90px;
-  text-align: end;
+  text-align: right;
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -60,7 +58,6 @@ input[type=number] {
 .Button:hover {
   cursor: pointer;
 }
-
 
 .btn-0 {
   border-radius: 50px;

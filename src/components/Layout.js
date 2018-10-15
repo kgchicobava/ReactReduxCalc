@@ -32,10 +32,8 @@ export default class Layout extends Component {
             <Operator operatorAccent={"mainOps"} operator={"/"} />
 
             <div className="zero"><Key numAccent={"btn-0 digit"} num={0} /></div>
-            {/* <Key num={0} /> */}
             <Operator operatorAccent={"digit"} operator={"."} />
             <Operator operatorAccent={"mainOps"} operator={"="} />
-            
         </div>
     </div>
       

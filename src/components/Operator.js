@@ -21,6 +21,7 @@ import {
 } from "../actions/calcActions";
 import store from "../store";
 
+// this made for better code look
 const localState = {};
 store.subscribe(() => {
     Object.assign(localState, {}, store.getState());
@@ -31,7 +32,7 @@ class Operator extends Component {
         switch (this.props.operator) {
 
             case ".":
-                this.props.dot(store.getState().argumentBefore);
+                this.props.dot(localState.argumentBefore);
                 break;
 
             case "+":
@@ -40,43 +41,43 @@ class Operator extends Component {
                 break;
 
             case "-":
-                this.props.minus(store.getState().argumentBefore, store.getState().result);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.minus(localState.argumentBefore, localState.result);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "*":
-                this.props.multiply(store.getState().argumentBefore , store.getState().result ? store.getState().result : 1);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.multiply(localState.argumentBefore , localState.result ? localState.result : 1);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "/":
-                this.props.divide(store.getState().argumentBefore , store.getState().result);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.divide(localState.argumentBefore , localState.result);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "^":
-                this.props.expo(store.getState().argumentBefore, store.getState().result);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.expo(localState.argumentBefore, localState.result);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "√":
-                this.props.sqrt(store.getState().argumentBefore);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.sqrt(localState.argumentBefore);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "%":
-                this.props.percentage(store.getState().argumentBefore, store.getState().result);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.percentage(localState.argumentBefore, localState.result);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "!":
-                this.props.factorial(store.getState().argumentBefore);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.factorial(localState.argumentBefore);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "=":
-                this.props.equal(store.getState().argumentBefore, store.getState().currentOperator, store.getState().result);
-                document.querySelector("#mainDisplay").value = store.getState().result;
+                this.props.equal(localState.argumentBefore, store.getState().currentOperator, localState.result);
+                document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
             case "CA":
@@ -84,18 +85,17 @@ class Operator extends Component {
                 break;
 
             case "C":
-                this.props.cancel(store.getState().argumentBefore);
+                this.props.cancel(localState.argumentBefore);
                 break;
 
             case "+/-":
-                this.props.invert(store.getState().argumentBefore);
+                this.props.invert(localState.argumentBefore);
                 break;
 
             default:
                 return null;
         }
     }
-
 
   render() {
     return (

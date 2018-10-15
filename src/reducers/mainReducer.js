@@ -19,7 +19,6 @@ import {
 const initialState = {
     isDot: false,
     argumentBefore: "",
-    argumentAfter: 0,
     currentOperator: "",
     result: ""
 }
@@ -59,7 +58,6 @@ export default function (state = initialState, action) {
                 result: action.value ? action.value : action.argBefore,
                 currentOperator: "-",
                 isDot: false,
-                argumentAfter: action.value,
                 argumentBefore: ""
             };
 
@@ -82,7 +80,6 @@ export default function (state = initialState, action) {
             return {
                 isDot: false,
                 argumentBefore: "",
-                argumentAfter: 0,
                 currentOperator: "",
                 result: ""
             };
@@ -179,8 +176,7 @@ function operate(first, operator, second) {
             return  (second ? second : 1) ** (first? first : 1);
 
         case "%":
-        console.log(`first ${first} second ${second}`)
-        return (second/100)*first;
+            return (second/100)*first;
         default:
             return 0;
     }

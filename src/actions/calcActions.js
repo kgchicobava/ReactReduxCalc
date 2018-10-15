@@ -18,6 +18,7 @@ import {
 } from "./types";
 import store from "../store";
 import * as math from "mathjs";
+
 export const number = (num) => dispatch => {
     dispatch({
         type: NUMBER,
@@ -48,6 +49,7 @@ export const plus = (argBefore = 0, result = 0) => dispatch => {
         res
     });
 };
+
 export const minus = (argBefore, result) => dispatch => {
     if (result === "") {
         dispatch({
@@ -55,9 +57,7 @@ export const minus = (argBefore, result) => dispatch => {
             value: argBefore
         });
     }
-
     let value = store.getState().result - argBefore;
-    console.log(value)
     dispatch({
         type: MINUS,
         value,
@@ -89,13 +89,19 @@ export const divide = (argBefore, result) => dispatch => {
 };
 
 export const expo = (argBefore, result) => dispatch => {
-    const res = parseFloat(argBefore ** (result? result : 1));
-    dispatch({type: EXPO, res});
+    const res = parseFloat(argBefore ** (result ? result : 1));
+    dispatch({
+        type: EXPO,
+        res
+    });
 };
 
 export const sqrt = (argBefore) => dispatch => {
     const res = Math.sqrt(parseFloat(argBefore));
-    dispatch({type: SQRT, res});
+    dispatch({
+        type: SQRT,
+        res
+    });
 };
 
 export const percentage = (argBefore, result) => dispatch => {
@@ -103,19 +109,23 @@ export const percentage = (argBefore, result) => dispatch => {
         dispatch({
             type: SET_RESULT,
             value: argBefore
-        });}
-        result = parseFloat((store.getState().result/100) * argBefore? argBefore : 1);
-        console.log(`result ${result}`)
-        dispatch({
-            type: PERCENTAGE,
-            argBefore,
-            res: result
-        })
+        });
+    }
+    result = parseFloat((store.getState().result / 100) * argBefore ? argBefore : 1);
+    console.log(`result ${result}`)
+    dispatch({
+        type: PERCENTAGE,
+        argBefore,
+        res: result
+    })
 };
 
 export const factorial = (argBefore) => dispatch => {
     const res = math.factorial(parseFloat(argBefore));
-    dispatch({type: FACTORIAL, res});
+    dispatch({
+        type: FACTORIAL,
+        res
+    });
 };
 
 export const equal = (argBefore, operator, argAfter) => dispatch => {
@@ -150,5 +160,8 @@ export const clear = () => dispatch => {
 
 export const invert = (argBefore) => dispatch => {
     const res = -argBefore;
-    dispatch({type: INVERT, res});
+    dispatch({
+        type: INVERT,
+        res
+    });
 }
