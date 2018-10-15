@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 import Display from "./components/Display";
-import KeyBoard from "./components/KeyBoard";
-import Operators from "./components/Operators";
 import store from "./store";
 import {Provider} from "react-redux";
-
+import Layout from "./components/Layout"
 
 class App extends Component {
   render() {
@@ -13,10 +11,7 @@ class App extends Component {
       <Provider store={store}>
       <div className="App">
         <Display />
-        <div className="flex">
-          <KeyBoard />
-          <Operators />
-        </div>
+        <Layout />
       </div>
       </Provider>
     );

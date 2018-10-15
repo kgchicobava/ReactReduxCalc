@@ -1,34 +1,120 @@
-.App {
-  width: 500px;
-  height: 600px;
-  border: 2px solid red;
-  margin: 0 auto;
+body {
+  background-color: black;
 }
 
-.flex {
-  display: flex;
+.App {
+  width: 32vw;
+  height: 105vh;
+  margin: 0 auto;
+  border-radius: 40px;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 8vw 8vw 8vw 8vw;
+  grid-template-rows: auto auto auto auto auto auto;
+  justify-items: stretch;
+}
+
+.zero {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+
 
 .Display {
-  height: 100px;
-  width: 500px;
-  font-size: 80px;
+  height: 12vh;
+  width: 60vw;
+  background-color: transparent;
+  color: white;
+  margin-left: -30vw;
+  padding-bottom: 2vh;
+  padding-top: 5px;
+  border: transparent;
+  font-size: 90px;
   text-align: end;
 }
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-    -webkit-appearance: none;
-    appearance: none;
-    margin: 0; 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 input[type=number] {
-   -moz-appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 .Button {
-  height: 100px;
-  width: 100px;
+  height: 8vw;
+  width: 8vw;
+  font-size: 30px;
+  border-radius: 50%;
+  transform: scale(.9);
+  border: none;
+  transition: .2s;
+}
+
+.Button:hover {
+  cursor: pointer;
+}
+
+
+.btn-0 {
+  border-radius: 50px;
+  width: 16vw;
+  margin-left: -0.5vh;
+}
+
+.shrink {
+  height: 3vw;
+  border-radius: 20px;
+  font-size: 25px;
+}
+
+.digit {
+  color: white;
+  background-color: #423f3f;
   font-size: 50px;
+  text-align: center;
+}
+
+.digit:hover {
+  background-color: #6e6868;
+}
+
+.digit:active {
+  background-color: red;
+
+}
+
+.mainOps {
+  color: white;
+  background-color: red;
+  font-size: 50px;
+  text-align: center;
+}
+
+.mainOps:hover {
+  background-color: #f18d8d;
+}
+
+.mainOps:active {
+  background-color: #6e6868;
+}
+
+.additionalOps {
+  color: black;
+  background-color: silver;
+  text-align: center;
+}
+
+.additionalOps:hover {
+  background-color: orange;
+}
+
+.additionalOps:active {
+  background-color: #6e6868;
 }

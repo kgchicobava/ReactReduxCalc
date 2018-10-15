@@ -11,7 +11,7 @@ class Key extends Component {
   render() {
     return (
       <div>
-        <button className="Button" onClick={this.onClick.bind(this)}>{this.props.num}</button>
+        <button className={this.props.numAccent + " Button"} onClick={this.onClick.bind(this)}>{this.props.num}</button>
       </div>
     )
   }

@@ -13,7 +13,8 @@ import {
     EXPO,
     SQRT,
     PERCENTAGE,
-    FACTORIAL
+    FACTORIAL,
+    INVERT
 } from "./types";
 import store from "../store";
 import * as math from "mathjs";
@@ -65,7 +66,7 @@ export const minus = (argBefore, result) => dispatch => {
 };
 
 export const multiply = (argBefore, result = 1) => dispatch => {
-    const res = parseFloat(argBefore * result);
+    const res = parseFloat(argBefore ? argBefore : 1 * result);
     dispatch({
         type: MULTIPLY,
         res
@@ -79,7 +80,7 @@ export const divide = (argBefore, result) => dispatch => {
             value: argBefore
         });
     }
-    result = parseFloat(store.getState().result) / parseFloat(argBefore);
+    result = parseFloat(store.getState().result) / (parseFloat(argBefore) ? parseFloat(argBefore) : 1);
     dispatch({
         type: DIVIDE,
         argBefore,
@@ -146,3 +147,8 @@ export const clear = () => dispatch => {
         type: CLEAR
     });
 };
+
+export const invert = (argBefore) => dispatch => {
+    const res = -argBefore;
+    dispatch({type: INVERT, res});
+}

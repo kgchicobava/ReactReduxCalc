@@ -16,7 +16,8 @@ import {
     expo,
     sqrt,
     percentage,
-    factorial
+    factorial,
+    invert
 } from "../actions/calcActions";
 import store from "../store";
 
@@ -44,12 +45,12 @@ class Operator extends Component {
                 break;
 
             case "*":
-                this.props.multiply(store.getState().argumentBefore, store.getState().result ? store.getState().result : 1);
+                this.props.multiply(store.getState().argumentBefore , store.getState().result ? store.getState().result : 1);
                 document.querySelector("#mainDisplay").value = store.getState().result;
                 break;
 
             case "/":
-                this.props.divide(store.getState().argumentBefore, store.getState().result);
+                this.props.divide(store.getState().argumentBefore , store.getState().result);
                 document.querySelector("#mainDisplay").value = store.getState().result;
                 break;
 
@@ -86,6 +87,10 @@ class Operator extends Component {
                 this.props.cancel(store.getState().argumentBefore);
                 break;
 
+            case "+/-":
+                this.props.invert(store.getState().argumentBefore);
+                break;
+
             default:
                 return null;
         }
@@ -95,7 +100,7 @@ class Operator extends Component {
   render() {
     return (
       <div>
-        <button className="Button" onClick={this.onClick.bind(this)}>{this.props.operator}</button>
+        <button className={this.props.operatorAccent + " Button"} onClick={this.onClick.bind(this)}>{this.props.operator}</button>
       </div>
     )
   }
@@ -103,4 +108,4 @@ class Operator extends Component {
 
 const mapStateToProps = (state) => ({state});
 
-export default connect(mapStateToProps, {dot, plus, minus, multiply, divide, equal, clear, cancel, expo, sqrt, percentage, factorial})(Operator);
+export default connect(mapStateToProps, {dot, plus, minus, multiply, divide, equal, clear, cancel, expo, sqrt, percentage, factorial, invert})(Operator);

@@ -13,3 +13,4 @@ export const EXPO = "EXPO";
 export const SQRT = "SQRT";
 export const PERCENTAGE = "PERCENTAGE";
 export const FACTORIAL = "FACTORIAL";
+export const INVERT = "INVERT";

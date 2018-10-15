@@ -13,7 +13,8 @@ import {
     EXPO,
     SQRT,
     PERCENTAGE,
-    FACTORIAL
+    FACTORIAL,
+    INVERT
 } from "../actions/types";
 const initialState = {
     isDot: false,
@@ -146,6 +147,12 @@ export default function (state = initialState, action) {
                 ...state,
                 result: parseFloat(action.value)
             }
+
+        case INVERT: 
+        return {
+            ...state,
+            argumentBefore: action.res
+        }
         default:
             return state;
     }
