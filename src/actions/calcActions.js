@@ -66,7 +66,7 @@ export const minus = (argBefore, result) => dispatch => {
 };
 
 export const multiply = (argBefore, result = 1) => dispatch => {
-    const res = parseFloat(argBefore ? argBefore : 1 * result);
+    const res = parseFloat(argBefore ? argBefore : 1) * parseFloat(result);
     dispatch({
         type: MULTIPLY,
         res
@@ -129,11 +129,36 @@ export const factorial = (argBefore) => dispatch => {
 };
 
 export const equal = (argBefore, operator, argAfter) => dispatch => {
+    function operate(first, operator, second) {
+    first = parseFloat(first);
+    second = parseFloat(second);
+    console.log(`first ${first} second ${second}`)
+    switch (operator) {
+        case "+":
+            return (first ? first : 0) + (second ? second : 0);
+
+        case "-":
+            return (second ? second : 0) - (first ? first : 0);
+
+        case "*":
+            return (first ? first : 1) * (second ? second : 1);
+
+        case "/":
+            return (second ? second : 1) / (first ? first : 1);
+
+        case "^":
+            return (second ? second : 1) ** (first ? first : 1);
+
+        case "%":
+            return (second / 100) * first;
+        default:
+            return 0;
+    }
+}
+const res = operate(argBefore, operator, argAfter);
     dispatch({
         type: EQUALS,
-        argBefore,
-        argAfter,
-        operator
+        res
     });
 };
 

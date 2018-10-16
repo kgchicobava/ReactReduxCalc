@@ -67,7 +67,7 @@ export default function (state = initialState, action) {
                 isDot: false,
                 argumentBefore: "",
                 currentOperator: "",
-                result: operate(action.argBefore, action.operator, action.argAfter)
+                result: action.res
             };
 
         case CANCEL:
@@ -92,38 +92,38 @@ export default function (state = initialState, action) {
 
         case EXPO:
             return {
-                    ...state,
-                    isDot: false,
-                    result: action.res,
-                    argumentBefore: "",
-                    currentOperator: "^"    
+                ...state,
+                isDot: false,
+                result: action.res,
+                argumentBefore: "",
+                currentOperator: "^"
             }
 
         case SQRT:
             return {
-                   ...state,
-                   isDot: false,
-                   result: action.res,
-                   argumentBefore: "",
-                   currentOperator: "√" 
+                ...state,
+                isDot: false,
+                result: action.res,
+                argumentBefore: "",
+                currentOperator: "√"
             }
 
         case PERCENTAGE:
             return {
-                    ...state,
-                    isDot: false,
-                    result: action.res,
-                    argumentBefore: "",
-                    currentOperator: "%"
+                ...state,
+                isDot: false,
+                result: action.res,
+                argumentBefore: "",
+                currentOperator: "%"
             }
 
         case FACTORIAL:
             return {
-                  ...state,
-                  isDot: false,
-                  result: action.res,
-                  argumentBefore: "",
-                  currentOperator: "!"  
+                ...state,
+                isDot: false,
+                result: action.res,
+                argumentBefore: "",
+                currentOperator: "!"
             }
 
         case DOT:
@@ -145,39 +145,13 @@ export default function (state = initialState, action) {
                 result: parseFloat(action.value)
             }
 
-        case INVERT: 
-        return {
-            ...state,
-            argumentBefore: action.res
-        }
+        case INVERT:
+            return {
+                ...state,
+                argumentBefore: action.res
+            }
         default:
             return state;
     }
 }
 
-function operate(first, operator, second) {
-    first = parseFloat(first);
-    second = parseFloat(second);
-    console.log(`first ${first} second ${second}`)
-    switch (operator) {
-        case "+":
-            return (first ? first : 0) + (second? second : 0);
-
-        case "-":
-            return (second ? second : 0) - (first ? first : 0);
-
-        case "*":
-            return (first? first : 1) * (second ? second : 1);
-
-        case "/":
-            return (second? second : 1) / (first ? first : 1);
-
-        case "^":
-            return  (second ? second : 1) ** (first? first : 1);
-
-        case "%":
-            return (second/100)*first;
-        default:
-            return 0;
-    }
-}

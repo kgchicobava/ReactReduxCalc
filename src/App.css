@@ -31,6 +31,7 @@ body {
   padding-top: 5px;
   border: transparent;
   font-size: 90px;
+  font-family: "K2D", sans-serif;
   text-align: right;
 }
 
@@ -49,6 +50,7 @@ input[type=number] {
   height: 8vw;
   width: 8vw;
   font-size: 30px;
+  font-family: "K2D", sans-serif;
   border-radius: 50%;
   transform: scale(.9);
   border: none;
