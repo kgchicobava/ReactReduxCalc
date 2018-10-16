@@ -1,0 +1,39 @@
+@media only screen and (max-width: 400px) {
+    .App {
+        width: 100vw;
+        height: 100vh;
+    }
+
+    .grid-container {
+        grid-template-columns: 25vw 25vw 25vw 25vw;
+        grid-template-rows: 12vh 12vh 12vh 12vh 12vh 12vh;
+        justify-items: center;
+    }
+
+    .Display {
+        width: 95vw;
+        margin-left: 0;
+        padding-right: 5px;
+    }
+
+    .Button {
+        height: 20vw;
+        width: 20vw;
+    }
+
+    .btn-0 {
+        border-radius: 50px;
+        width: 50vw;
+        margin-left: 1vh;
+      }
+
+      .shrink {
+        height: 20vw;
+        border-radius: 50%;
+        font-size: 25px;
+      }
+
+      .link {
+          transform: scale(.7);
+      }
+}

@@ -5,6 +5,7 @@
   "dependencies": {
     "gh-pages": "^2.0.1",
     "mathjs": "^5.2.0",
+    "node-sass": "^4.9.4",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",

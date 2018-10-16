@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './sass/App.scss';
 import Display from "./components/Display";
 import store from "./store";
 import {Provider} from "react-redux";
@@ -13,7 +13,7 @@ class App extends Component {
       <div className="App">
         <Display />
         <Layout />
-        <LinkToRepo />
+        <a href="https://github.com/kgchicobava/ReactReduxCalc" className="link">Source Code</a>
       </div>
       </Provider>
     );
