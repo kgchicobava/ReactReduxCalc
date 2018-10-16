@@ -73,6 +73,23 @@ input[type=number] {
   font-size: 25px;
 }
 
+.link {
+  transition: .3s;
+  position: fixed;
+  top: 0;
+  color: #bbb6b6;
+  left: 0;
+  border-radius: 15px;
+  font-size: 20px;
+  padding: 5px;
+  font-family: "K2D", sans-serif;
+}
+
+.link:hover {
+  color: white;
+  background-color: rgb(54, 50, 50);
+}
+
 .digit {
   color: white;
   background-color: #423f3f;

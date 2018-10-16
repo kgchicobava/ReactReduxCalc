@@ -4,6 +4,7 @@ import Display from "./components/Display";
 import store from "./store";
 import {Provider} from "react-redux";
 import Layout from "./components/Layout"
+import LinkToRepo from "./components/LinkToRepo";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <div className="App">
         <Display />
         <Layout />
+        <LinkToRepo />
       </div>
       </Provider>
     );
