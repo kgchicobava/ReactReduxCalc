@@ -16,7 +16,7 @@ import {
     expo,
     sqrt,
     percentage,
-    factorial,
+    factorialVal,
     invert
 } from "../actions/calcActions";
 import store from "../store";
@@ -71,7 +71,7 @@ class Operator extends Component {
                 break;
 
             case "!":
-                this.props.factorial(localState.argumentBefore);
+                this.props.factorialVal(localState.argumentBefore);
                 document.querySelector("#mainDisplay").value = localState.result;
                 break;
 
@@ -108,4 +108,4 @@ class Operator extends Component {
 
 const mapStateToProps = (state) => ({state});
 
-export default connect(mapStateToProps, {dot, plus, minus, multiply, divide, equal, clear, cancel, expo, sqrt, percentage, factorial, invert})(Operator);
+export default connect(mapStateToProps, {dot, plus, minus, multiply, divide, equal, clear, cancel, expo, sqrt, percentage, factorialVal, invert})(Operator);

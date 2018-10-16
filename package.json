@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "gh-pages": "^2.0.1",
     "mathjs": "^5.2.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
@@ -11,11 +12,13 @@
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0"
   },
+  "homepage": "https://kgchicobava.github.io/react-redux-calc",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

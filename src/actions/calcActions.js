@@ -17,7 +17,7 @@ import {
     INVERT
 } from "./types";
 import store from "../store";
-import * as math from "mathjs";
+import { factorial } from "mathjs";
 
 export const number = (num) => dispatch => {
     dispatch({
@@ -120,8 +120,8 @@ export const percentage = (argBefore, result) => dispatch => {
     })
 };
 
-export const factorial = (argBefore) => dispatch => {
-    const res = math.factorial(parseFloat(argBefore));
+export const factorialVal = (argBefore) => dispatch => {
+    const res = factorial(parseFloat(argBefore));
     dispatch({
         type: FACTORIAL,
         res
